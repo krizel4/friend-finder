@@ -4,15 +4,15 @@
 
 const path = require("path");
 
+// include paths in server
 module.exports = function(app) {
-
-    // index
-    app.get("/", function(req, res){
-        res.sendFile(path.join(__dirname,"../public/home.html"));
-    })
 
     app.get("/survey", function(req, res) {
         res.sendFile(path.join(__dirname,"../public/survey.html"));
+    })
+
+    app.get("/", function(req, res){
+        res.sendFile(path.join(__dirname,"../public/home.html"));
     })
 
     // Catch-all route that leads to home.html
