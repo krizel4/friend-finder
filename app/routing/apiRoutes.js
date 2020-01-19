@@ -5,47 +5,64 @@
 var friendsData = require("../data/friends.js");
 
 // Routes
-module.exports = function(app) {
+module.exports = function (app) {
 
     // Display a JSON of all possible friends.
     app.get("/api/friends", function (req, res) {
         res.json(friendsData);
     });
 
-    // // Compatibility logic.
-    // app.post("/api/friends", function (req, res) {
-    //     // return res.json(friendsData);
+    // Compatibility logic.
+    app.post("/api/friends", function (req, res) {
+        // return res.json(friendsData);
 
-    //     let newFriend = req.body.scores;
-    //     let scoreArray = [];
-    //     let friendMatch;
+        // let newFriend = req.body.scores;
+        // let scoreArray = [];
+        // let friendMatch;
 
-    //     // Loop through buddies.
-    //     for (let i = 0; i < friendsData.length; i++) {
+        // Turning new friend into one object
 
-    //         // Compare buddy scores
-    //         for (let j = i; j < newFriend.length; j++) {
-    //             compatibility += (Math.abs(parseInt(friendsData[i].scores[j]) - parseInt(newFriend[j])));
-    //         }
+        let newFriend = {
+            name: "",
+            photo: "",
+            friendMatcherator: 1000
+        };
 
-    //         // Push scores to array
-    //         scoreArray.push(compatibility);
-    //     }
+        // Parse through users POST. 
+        let userData = req.body;
+        let userScores = userData.scores;
 
-    //     // Find best match
-    //     for (let i = 0; i < scoreArray.length; i++) {
-    //         if (scoreArray[i] <= scoreArray[friendMatch]) {
-    //             friendMatch = i;
-    //         }
-    //     }
+        // Calculate difference between users in database.
+        let compatibility = 0;
 
-    //     // Show match
-    //     let compatibilityFound = friendsData[friendMatch];
-    //     res.json(compatibilityFound);
+        // Loop through buddies.
+        for (let i = 0; i < friendsData.length; i++) {
 
-    //     // Push submission to array
-    //     friendsData.push(req.body);
+            // console.log(friendsData[i]);
+            compatibility = 0;
 
-    // });
+            // Compare buddy scores
+            for (let j = i; j < newFriend.length; j++) {
+                compatibility += (Math.abs(parseInt(userScores[j]) - parseInt(friendsData[j])));
+
+                // Push scores to array
+                // scoreArray.push(compatibility);
+
+            // Find best match
+            if (compatibility <= newFriend.friendMatcherator) {
+                friendMatch.name = friendsData[i].name;
+                friendMatch.photo = friendsData[i].photo;
+                friendMatch.friendMatcherator = compatibility;
+            }
+        }
+    }
+        // Push entire submission to array
+        friendsData.push(userData);
+
+    // Show match
+    let compatibilityFound = friendsData[friendMatch];
+    res.json(compatibilityFound);
+
+});
 }
 
