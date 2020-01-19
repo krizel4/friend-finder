@@ -9,16 +9,21 @@ module.exports = function apiRoute (app) {
 
     // Display a JSON of all possible friends.
     app.get("/api/friends", function (req, res) {
-        return res.json(data);
+        return res.json(friendsData);
     });
 
     // Compatibility logic.
     app.post("/api/friends", function (req, res) {
-        return res.json(data);
+        return res.json(friendsData);
 
         let newFriend = req.body.scores;
         let scoreArray = [];
         let friendMatch;
+
+            // Loop through buddies.
+            for(let i = 0; i < friendsData.length; i++){
+
+            }
 
     })
 
