@@ -5,11 +5,19 @@
 const path = require("path");
 
 module.exports = function(app) {
+
+    // index
+    app.get("/", function(req, res){
+        res.sendFile(path.join(__dirname,"../public/home.html"));
+    })
+
     app.get("/survey", function(req, res) {
         res.sendFile(path.join(__dirname,"../public/survey.html"));
     })
 
-
-
+    // Catch-all route that leads to home.html
+    app.get("/*", function(req, res)  {
+        res.sendFile(path.join(__dirname, "../public/home.html"));
+    });
 
 };
