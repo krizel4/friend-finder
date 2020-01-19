@@ -23,6 +23,16 @@ module.exports = function apiRoute (app) {
             // Loop through buddies.
             for(let i = 0; i < friendsData.length; i++){
 
+                // Compare buddy scores
+
+                // Push scores to array
+
+                // Find best match
+
+                // Show match
+
+                // Push submission to array
+
             }
 
     })
