@@ -200,18 +200,19 @@
   <!-- FORM FUNCTIONALITY -->
   <script type="text/javascript">
     $("#submit").on("click", function () {
+      event.preventDefault();
 
       // FORM VALIDATION
       function validateForm() {
         var isValid = true;
         $(".form-control").each(function () {
-          if ($(this).val() === "") {
+          if ($(this).val().trim() === "") {
             isValid = false;
           }
         })
 
         $(".chosen-select").each(function () {
-          if ($(this).val() === "") {
+          if ($(this).val().trim() === "") {
             isValid = false;
           }
         });
@@ -221,8 +222,8 @@
       // When user inputs required data
       if (validateForm()) {
         var userData = {
-          name: $("#name").val(),
-          photo: $("#photo").val(),
+          name: $("#name").val().trim(),
+          photo: $("#photo").val().trim(),
           scores: [
             $("#q1").val(),
             $("#q2").val(),
@@ -237,13 +238,17 @@
           ]
         };
 
+        console.log(userData);
+
         var URL = window.location.origin;
-        $.post(URL + "/api/friends", userData, function (friendsData) {
-          $("#matchName").text(friendsData.name);
-          $("#matchPhoto").attr("src", friendsData.photo);
-          $("resultsModal").modal("toggle");
-          console.log(URL);
+        $.post(URL + "/api/friends", userData, function (matched) {
+          $("#matchName").text(matched.name);
+          $("#matchPhoto").attr("src", matched.photo);
+          $("#resultsModal").modal("show");
+
         });
+
+
       }
 
     });
