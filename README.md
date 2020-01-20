@@ -16,8 +16,9 @@ To test the app on your local machine, you'll need to install a few packages, in
 ## Built with
 * HTML
 * CSS
+* Bootstrap
 * Javascript
+* AJAX
 * Node.js
 * Express.js
 * Path.js
-* Bootstrap

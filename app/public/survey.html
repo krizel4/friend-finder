@@ -240,12 +240,11 @@
 
         console.log(userData);
 
-        var URL = window.location.origin;
-        $.post(URL + "/api/friends", userData, function (matched) {
-          $("#matchName").text(matched.name);
-          $("#matchPhoto").attr("src", matched.photo);
-          $("#resultsModal").modal("show");
-
+        let URL = window.location.origin;
+        $.post(URL + "/api/friends", userData, function (data) {
+          $("#matchName").text(data.name);
+          $("#matchPhoto").attr("src", data.photo);
+          $("#resultsModal").modal("toggle");
         });
 
 
