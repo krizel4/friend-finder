@@ -32,6 +32,8 @@ module.exports = function (app) {
         let userData = req.body;
         let userScores = userData.scores;
 
+        console.log(userScores);
+
         // Calculate difference between users in database.
         let compatibility = 0;
 
@@ -42,27 +44,26 @@ module.exports = function (app) {
             compatibility = 0;
 
             // Compare buddy scores
-            for (let j = i; j < newFriend.length; j++) {
+            for (let j = i; j < friendsData.length; j++) {
                 compatibility += (Math.abs(parseInt(userScores[j]) - parseInt(friendsData[j])));
 
                 // Push scores to array
                 // scoreArray.push(compatibility);
 
-            // Find best match
-            if (compatibility <= newFriend.friendMatcherator) {
-                friendMatch.name = friendsData[i].name;
-                friendMatch.photo = friendsData[i].photo;
-                friendMatch.friendMatcherator = compatibility;
+                // Find best match
+                if (compatibility <= newFriend.friendMatcherator) {
+                    friendMatch.name = friendsData[i].name;
+                    friendMatch.photo = friendsData[i].photo;
+                    friendMatch.friendMatcherator = compatibility;
+                }
             }
         }
-    }
         // Push entire submission to array
         friendsData.push(userData);
 
-    // Show match
-    let compatibilityFound = friendsData[friendMatch];
-    res.json(compatibilityFound);
+        // Show match
+        res.json(newFriend);
 
-});
+    });
 }
 
