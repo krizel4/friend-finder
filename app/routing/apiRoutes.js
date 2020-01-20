@@ -18,7 +18,7 @@ module.exports = function (app) {
 
         // let newFriend = req.body.scores;
         // let scoreArray = [];
-        // let friendMatch;
+        let friendMatch;
 
         // Turning new friend into one object
 
@@ -28,7 +28,7 @@ module.exports = function (app) {
             friendMatcherator: 1000
         };
 
-        // Parse through users POST. 
+        // Parse through users POST.
         let userData = req.body;
         let userScores = userData.scores;
 
