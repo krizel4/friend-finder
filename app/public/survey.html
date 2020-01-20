@@ -186,7 +186,9 @@
         <div class="modal-body">
           <h2 id="matchName"></h2>
           <hr>
-          <img id="matchPhoto" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Kanye_West_at_the_2009_Tribeca_Film_Festival-2_%28cropped%29.jpg/220px-Kanye_West_at_the_2009_Tribeca_Film_Festival-2_%28cropped%29.jpg" alt="Friend Matcherator">
+          <img id="matchPhoto"
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Kanye_West_at_the_2009_Tribeca_Film_Festival-2_%28cropped%29.jpg/220px-Kanye_West_at_the_2009_Tribeca_Film_Festival-2_%28cropped%29.jpg"
+            alt="Friend Matcherator">
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -240,6 +242,7 @@
           $("#matchName").text(friendsData.name);
           $("#matchPhoto").attr("src", friendsData.photo);
           $("resultsModal").modal("toggle");
+          console.log(URL);
         });
       }
 
