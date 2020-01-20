@@ -171,15 +171,35 @@
       </div>
     </footer>
 
-  </div>
+  </div> <!-- THIS ENDS THE CONTAINER -->
 
-  <!-- Need modal -->
+  <!-- BOOTSTRAP MODAL  -->
+  <div class="modal fade" role="dialog" id="resultsModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title">Meet Your BFF!</h3>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <h2 id="matchName"></h2>
+          <hr>
+          <img id="matchPhoto" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Kanye_West_at_the_2009_Tribeca_Film_Festival-2_%28cropped%29.jpg/220px-Kanye_West_at_the_2009_Tribeca_Film_Festival-2_%28cropped%29.jpg" alt="Friend Matcherator">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- FORM FUNCTIONALITY -->
   <script type="text/javascript">
     $("#submit").on("click", function () {
 
-      // Form Validation
+      // FORM VALIDATION
       function validateForm() {
         var isValid = true;
         $(".form-control").each(function () {
@@ -216,10 +236,11 @@
         };
 
         var URL = window.location.origin;
-        $.post(URL + "/api/friends", userData, function(data) {
-          alert("working");
+        $.post(URL + "/api/friends", userData, function (friendsData) {
+          $("#matchName").text(friendsData.name);
+          $("#matchPhoto").attr("src", friendsData.photo);
+          $("resultsModal").modal("toggle");
         });
-
       }
 
     });
